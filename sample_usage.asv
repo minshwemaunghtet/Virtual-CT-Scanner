@@ -1,0 +1,41 @@
+clear all
+clc
+
+% Sample script & usage of fces.
+
+% Sample image creation
+img = zeros(256);
+img(100:156, 100:156) = 255;
+RGB = imread("rectanglePhantom_backprojection.png");
+ig = rgb2gray(RGB);
+
+% Convert img to radon space
+%r_img = cRadon(ig, 180);
+
+% Reconstruction of the original image 
+%bp_img = cFBP(r_img, 180);
+%ir_img = cART(r_img, 180, 1);
+
+% Visualization
+tiledlayout(1, 4)
+nexttile
+%imshow(ig)
+title('Original image')
+
+nexttile
+%imshow(r_img, [])
+title('Converted to radon space')
+
+nexttile
+%imshow(bp_img, [])
+title('Filtered backprojection')
+
+%nexttile
+%imshow(ir_img, [])
+%title('Iterative reconstruction (1 iter.)')
+
+nexttile
+ig = imresize(ig,[256, 256]);
+imshow(ig)
+improfile
+title('Rectangle Phantom Back Projection Signal Intensity')
